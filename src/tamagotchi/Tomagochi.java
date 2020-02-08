@@ -1,4 +1,4 @@
-package tamagochi;
+package tamagotchi;
 
 public class Tomagochi {
     public static void main(String[] args) {

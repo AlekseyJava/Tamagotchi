@@ -1,4 +1,4 @@
-package tamagochi.beanTomagochi;
+package tamagotchi.personTamagotchi;
 
 //играть
 public interface Play {

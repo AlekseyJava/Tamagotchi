@@ -1,4 +1,4 @@
-package tamagochi.beanTomagochi;
+package tamagotchi.personTamagotchi;
 
 //злить
 public interface Anger {

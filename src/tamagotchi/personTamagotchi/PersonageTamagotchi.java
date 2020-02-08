@@ -1,4 +1,4 @@
-package tamagochi.beanTomagochi;
+package tamagotchi.personTamagotchi;
 
 public class PersonageTamagotchi implements Eat, Anger, Play {
     String status; //жив, умер пока нельзя завести нового, завести нового
