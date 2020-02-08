@@ -6,7 +6,7 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
     int statusSadness;
 
     public String getStatus() {
-        status = "not1";
+        status = "жив";
         return status;
     }
 

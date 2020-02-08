@@ -9,12 +9,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tamagotchi.personTamagotchi.PersonageTamagotchi;
 
-public class MainWindow extends Application {
+public class PlayWindow extends Application {
     PersonageTamagotchi myTomagochi = new PersonageTamagotchi();
     String status;
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         status = myTomagochi.getStatus();
         if (status == "not"){
             System.out.println("not personage");
@@ -26,23 +29,38 @@ public class MainWindow extends Application {
 
         }
 
+
         BorderPane root = new BorderPane();
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
 
         Button buttonEat = addButton("Накормить");
         Button buttonPlay = addButton("Поиграть");
-        Button buttonZamuchit = addButton("Поиздеваться");
+        Button buttonZamuchit = addButton("Позлить");
         Button buttonStatistica = addButton("Статистика");
         Button buttonExit = addButton("Выход");
 
         vbox.getChildren().addAll(buttonEat, buttonPlay, buttonZamuchit, buttonStatistica, buttonExit);
-        root.setRight(vbox);
+        //root.setRight(vbox);
+
+        if (status == "not"){
+            root.setCenter(vbox);
+        }
+        else if (status == "did"){
+            root.setLeft(vbox);
+        }
+        else {
+            root.setRight(vbox);
+        }
+
 
 
         Scene scene = new Scene(root, 900, 500);
-        primaryStage.setResizable(false);
+
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Tamagotchi 1.01");
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
         primaryStage.show();
 
     }
