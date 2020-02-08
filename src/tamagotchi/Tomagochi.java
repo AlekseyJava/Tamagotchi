@@ -5,21 +5,27 @@ import tamagotchi.personTamagotchi.PersonageTamagotchi;
 public class Tomagochi {
     public static void main(String[] args) {
 
-        String status; //не рожден, жив, умер
+        String status; //не родился, жив, умер
         PersonageTamagotchi tamagotchi = new PersonageTamagotchi();
         status = tamagotchi.getStatus();
 
-        if (status == "not tamagotchi") {
-            System.out.println("не родился");
+
+        //Тамагочи не родился
+        if (status == "не родился") {
+            SelectTamagotchi newTamagotchi = new SelectTamagotchi();
+            newTamagotchi.select(args);
         }
 
+        //Тамагочи живет
         if (status == "жив"){
-            PlayWindow playWindow = new PlayWindow();
-            playWindow.buildWindow(args);
+            PlayTamagotchi playTamagotchi = new PlayTamagotchi();
+            playTamagotchi.buildWindow(args);
         }
 
+        //Тамагочи умер
         if (status == "умер"){
-            System.out.println("умер");
+            DiedTamagothci diedTamagothci = new DiedTamagothci();
+            diedTamagothci.died(args);
         }
 
 

@@ -1,12 +1,15 @@
 package tamagotchi.personTamagotchi;
 
 public class PersonageTamagotchi implements Eat, Anger, Play {
-    String status; //жив, умер пока нельзя завести нового, завести нового
+    String status; //завести нового, жив, умер пока нельзя завести нового
     int statusHunger; //статус насколько голоден
     int statusSadness;
 
     public String getStatus() {
+
+        //status = "не родился";
         status = "жив";
+        //status = "умер";
         return status;
     }
 

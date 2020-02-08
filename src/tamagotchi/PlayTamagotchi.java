@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tamagotchi.personTamagotchi.PersonageTamagotchi;
 
-public class PlayWindow extends Application {
+public class PlayTamagotchi extends Application {
     PersonageTamagotchi myTomagochi = new PersonageTamagotchi();
     String status;
 
