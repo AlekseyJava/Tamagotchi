@@ -11,19 +11,19 @@ public class Tomagochi {
 
 
         //Тамагочи не родился
-        if (status == "не родился") {
+        if (status == "select") {
             SelectTamagotchi newTamagotchi = new SelectTamagotchi();
             newTamagotchi.select(args);
         }
 
         //Тамагочи живет
-        if (status == "жив"){
+        if (status == "live"){
             PlayTamagotchi playTamagotchi = new PlayTamagotchi();
             playTamagotchi.buildWindow(args);
         }
 
         //Тамагочи умер
-        if (status == "умер"){
+        if (status == "died"){
             DiedTamagothci diedTamagothci = new DiedTamagothci();
             diedTamagothci.died(args);
         }

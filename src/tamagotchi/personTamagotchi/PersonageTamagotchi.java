@@ -7,9 +7,16 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
 
     public String getStatus() {
 
-        //status = "не родился";
-        status = "жив";
-        //status = "умер";
+        //status = "select";
+        status = "live";
+        //status = "died";
+
+        //проверка статуса
+        //прочитать из файла последнее время кормления,
+        // сравнить
+        // и если менее x часов статус жив
+        // от x часов до y часов статус умер
+        // больше y часов - статус выбрать
         return status;
     }
 
