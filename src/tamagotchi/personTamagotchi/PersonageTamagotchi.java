@@ -28,7 +28,7 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
             // считаем сначала первую строку
 
             System.out.println(status = reader.readLine());
-            //System.out.println(lastFeedingTime = reader.readLine());
+            System.out.println(lastFeedingTime = reader.readLine());
 
 
         } catch (FileNotFoundException e) {
@@ -36,6 +36,7 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return status;
     }
 
