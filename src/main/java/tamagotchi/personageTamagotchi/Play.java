@@ -1,6 +1,5 @@
-package tamagotchi.personTamagotchi;
+package tamagotchi.personageTamagotchi;
 
-//играть
 public interface Play {
     public void playWithTamagotchi();
 }

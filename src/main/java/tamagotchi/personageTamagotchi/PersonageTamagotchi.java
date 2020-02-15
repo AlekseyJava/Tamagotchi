@@ -1,9 +1,8 @@
-package tamagotchi.personTamagotchi;
+package tamagotchi.personageTamagotchi;
 
-import tamagotchi.Tamagochi;
+import tamagotchi.Tamagotchi;
 
 import java.io.*;
-import java.util.Date;
 
 public class PersonageTamagotchi implements Eat, Anger, Play {
     private String status; //завести нового, жив, умер пока нельзя завести нового
@@ -23,7 +22,7 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
         // от x часов до y часов статус умер
         // больше y часов - статус выбрать
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("./src//tamagotchi//resource//status.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("./src//main//resources//status.txt")));
 
             // считаем сначала первую строку
 
@@ -64,10 +63,10 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
         System.out.println("Играю с томагочи");
     }
 
-    public Tamagochi statusTamagochi(){
+    public Tamagotchi statusTamagochi(){
         String myTomagochiStatus;
         String lastFeedingTime;
-        Tamagochi tamagochi = new Tamagochi();
+        Tamagotchi tamagochi = new Tamagotchi();
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("./src//status.txt")));
@@ -93,3 +92,4 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
 
     }
 }
+

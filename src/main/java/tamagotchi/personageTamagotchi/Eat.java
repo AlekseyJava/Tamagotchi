@@ -1,6 +1,5 @@
-package tamagotchi.personTamagotchi;
+package tamagotchi.personageTamagotchi;
 
-//кормить
 public interface Eat {
     public void eatTamagotchi();
 }

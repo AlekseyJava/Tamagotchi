@@ -1,11 +1,8 @@
 package tamagotchi;
 
-import tamagotchi.personTamagotchi.PersonageTamagotchi;
+import tamagotchi.personageTamagotchi.PersonageTamagotchi;
 
-import java.io.*;
-import java.util.Date;
-
-public class Tamagochi {
+public class Tamagotchi {
     public static void main(String[] args) {
         String status; //не родился, жив, умер
 
@@ -33,6 +30,5 @@ public class Tamagochi {
 
 
     }
-
 
 }

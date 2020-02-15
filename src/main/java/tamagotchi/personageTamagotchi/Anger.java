@@ -1,6 +1,5 @@
-package tamagotchi.personTamagotchi;
+package tamagotchi.personageTamagotchi;
 
-//злить
 public interface Anger {
     public void angerTamagotchi();
 }

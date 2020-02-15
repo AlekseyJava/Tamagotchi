@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import tamagotchi.personTamagotchi.PersonageTamagotchi;
+import tamagotchi.personageTamagotchi.PersonageTamagotchi;
 
 public class PlayTamagotchi extends Application {
     PersonageTamagotchi myTomagochi = new PersonageTamagotchi();

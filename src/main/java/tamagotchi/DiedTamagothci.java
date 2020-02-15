@@ -21,25 +21,25 @@ public class DiedTamagothci extends Application {
 
 
 
-            //Image imageGrave = new Image(getClass().getResourceAsStream("died.jpg"));
+        //Image imageGrave = new Image(getClass().getResourceAsStream("died.jpg"));
         Image imageGrave = new Image(getClass().getResourceAsStream("resource\\died.jpg"));
-            ImageView img = new ImageView(imageGrave);
-            img.setFitHeight(200);
-            img.setFitWidth(200);
+        ImageView img = new ImageView(imageGrave);
+        img.setFitHeight(200);
+        img.setFitWidth(200);
 
-            Label labelImg = new Label();
-            labelImg.setGraphic(img);
-            labelImg.setTranslateX(25);
-            labelImg.setTranslateY(50);
+        Label labelImg = new Label();
+        labelImg.setGraphic(img);
+        labelImg.setTranslateX(25);
+        labelImg.setTranslateY(50);
 
-            labelImg.setText("Ваш тамагочи умер: " + "время смерти томагочи");
-            labelImg.setGraphicTextGap(2);
-            labelImg.setContentDisplay(ContentDisplay.BOTTOM);
-            //labelImg.setText("Выбрать нового можно будет, через: " + "время выбора нового" );
-            //labelImg.setGraphicTextGap(2);
-            //labelImg.setContentDisplay(ContentDisplay.TOP);
+        labelImg.setText("Ваш тамагочи умер: " + "время смерти томагочи");
+        labelImg.setGraphicTextGap(2);
+        labelImg.setContentDisplay(ContentDisplay.BOTTOM);
+        //labelImg.setText("Выбрать нового можно будет, через: " + "время выбора нового" );
+        //labelImg.setGraphicTextGap(2);
+        //labelImg.setContentDisplay(ContentDisplay.TOP);
 
-            root.getChildren().addAll(labelDied, labelNewTamagotchi, labelImg);
+        root.getChildren().addAll(labelDied, labelNewTamagotchi, labelImg);
 
 
 
@@ -56,3 +56,4 @@ public class DiedTamagothci extends Application {
         launch(args);
     }
 }
+
