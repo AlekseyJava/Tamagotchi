@@ -24,6 +24,7 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File("./src//main//resources//status.txt")));
 
+
             // считаем сначала первую строку
 
             System.out.println(status = reader.readLine());
@@ -69,7 +70,7 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
         Tamagotchi tamagochi = new Tamagotchi();
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("./src//status.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File("./src//main//resources//status.txt")));
 
             // считаем сначала первую строку
 

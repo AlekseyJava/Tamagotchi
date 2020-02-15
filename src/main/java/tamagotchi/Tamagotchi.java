@@ -13,7 +13,7 @@ public class Tamagotchi {
         //Тамагочи не родился
         if (status.equals("select")) {
             SelectTamagotchi newTamagotchi = new SelectTamagotchi();
-            newTamagotchi.select(args);
+            newTamagotchi.selectWindow(args);
         }
 
         //Тамагочи живет
