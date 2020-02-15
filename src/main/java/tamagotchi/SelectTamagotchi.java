@@ -5,14 +5,19 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class SelectTamagotchi extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GridPane root = new GridPane();
+       GridPane root = new GridPane();
         root.setPadding(new Insets(10,10,10,10));
         root.setHgap(15);
         root.setVgap(15);
@@ -21,7 +26,7 @@ public class SelectTamagotchi extends Application {
         Label label = new Label("Выберите тамагочи");
         //root.getChildren().addAll(label);
 
-        Button buttonDog = new Button("Собака");
+        Button buttonDog = new Button();
         buttonDog.setPrefSize(100,20);
         GridPane.setConstraints(buttonDog, 0,1);
         Label labelDog = new Label("Ест мясо");
@@ -56,6 +61,22 @@ public class SelectTamagotchi extends Application {
         Button selectButton = new Button("Сохранить");
         GridPane.setConstraints(selectButton, 1,11);
 
+        
+        String url = String.valueOf(ClassLoader.getSystemResource("dog.jpg"));
+
+        System.out.println(url);
+        Image image = new Image( url);
+        //Image image = new Image(String.valueOf(ClassLoader.getSystemResource("file:///dog.jpg")));
+        System.out.println(getClass());
+        ImageView img = new ImageView(image);
+        img.setFitWidth(70);
+        img.setFitHeight(70);
+        buttonDog.setGraphic(img);
+
+//        Image image = new Image(getClass().getResourceAsStream("dog.png"));
+//        ImageView imageView = new ImageView(image);
+
+
 
         //обрабочик событий
 
@@ -74,6 +95,7 @@ public class SelectTamagotchi extends Application {
             }
             else{
                 System.out.println("Сохраняем томагочи");
+                //сохраняем тамаготчи
                 //закрываем окно выбора
                 //открываем окно игры
             }
@@ -86,6 +108,7 @@ public class SelectTamagotchi extends Application {
         root.getChildren().addAll(label, buttonDog, buttonCat, buttonFish, buttonTurtle, buttonBird);
         root.getChildren().addAll(labelDog, labelCat, labelFish,labelTurtle, labelBird);
         root.getChildren().addAll(selectLabel, selectButton);
+        root.getChildren().addAll(img);
 
         Scene scene = new Scene(root, 400, 400);
         primaryStage.setScene(scene);

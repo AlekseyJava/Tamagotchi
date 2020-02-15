@@ -19,11 +19,11 @@ public class DiedTamagothci extends Application {
         Label labelNewTamagotchi = new Label("Выбрать нового можно будет: и точное время выбора");
         labelNewTamagotchi.setTranslateY(12);
 
+        //Image image = new Image(getClass().getResourceAsStream("D:\\Java\\TamagotchiApp\\src\\main\\resources\\died.jpg"));
+        //ImageView img = new ImageView(image);
 
-
-        //Image imageGrave = new Image(getClass().getResourceAsStream("died.jpg"));
-        Image imageGrave = new Image(getClass().getResourceAsStream("resource\\died.jpg"));
-        ImageView img = new ImageView(imageGrave);
+        ImageView img = new ImageView(new Image(DiedTamagothci.class.getResourceAsStream("D://Java//TamagotchiApp//src//main//resources//died.jpg")));
+        //ageView img = new ImageView(imageGrave);
         img.setFitHeight(200);
         img.setFitWidth(200);
 
