@@ -4,13 +4,13 @@ import tamagotchi.personageTamagotchi.PersonageTamagotchi;
 
 public class Tamagotchi {
     public static void main(String[] args) {
-        String status; //не родился, жив, умер
+        String status; //не родился(не выбран), жив, умер
 
         PersonageTamagotchi tamagotchi = new PersonageTamagotchi();
         status = tamagotchi.getStatus();
 
 
-        //Тамагочи не родился
+        //Тамагочи не родился(не выбран)
         if (status.equals("select")) {
             SelectTamagotchi newTamagotchi = new SelectTamagotchi();
             newTamagotchi.selectWindow(args);
