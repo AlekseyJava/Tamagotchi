@@ -22,7 +22,6 @@ import java.util.GregorianCalendar;
 
 public class SelectTamagotchi extends Application {
     private String selectedTamagotchi; //выбраный тамаготчи
-    //private LocalDate localDate = LocalDate.now();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -33,7 +32,6 @@ public class SelectTamagotchi extends Application {
         root.getColumnConstraints().add(new ColumnConstraints(120));
 
         Label label = new Label("Выберите тамагочи");
-        //root.getChildren().addAll(label);
 
         Button buttonDog = new Button();
         buttonDog.setPrefSize(100,20);
@@ -41,7 +39,7 @@ public class SelectTamagotchi extends Application {
         Label labelDog = new Label("Ест мясо");
         GridPane.setConstraints(labelDog, 1,1);
 
-        Button buttonCat = new Button("Кошка");
+        Button buttonCat = new Button();
         buttonCat.setPrefSize(100,20);
         GridPane.setConstraints(buttonCat, 0,2);
         Label labelCat = new Label("Ест wiskas");
@@ -66,17 +64,22 @@ public class SelectTamagotchi extends Application {
         GridPane.setConstraints(labelBird, 1,5);
 
         Label selectLabel = new Label("");
-        GridPane.setConstraints(selectLabel, 1,10);
+        GridPane.setConstraints(selectLabel, 1,7);
         Button selectButton = new Button("Сохранить");
-        GridPane.setConstraints(selectButton, 1,11);
+        GridPane.setConstraints(selectButton, 1,8);
 
+        //url = String.valueOf(ClassLoader.getSystemResource("dog.jpg"));
+        Image imageDog = new Image(String.valueOf(ClassLoader.getSystemResource("dog.jpg")));
+        ImageView imgDog = new ImageView(imageDog);
+        imgDog.setFitWidth(50);
+        imgDog.setFitHeight(50);
+        buttonDog.setGraphic(imgDog);
 
-        String url = String.valueOf(ClassLoader.getSystemResource("dog.jpg"));
-        Image image = new Image(url);
-        ImageView img = new ImageView(image);
-        img.setFitWidth(70);
-        img.setFitHeight(70);
-        buttonDog.setGraphic(img);
+        Image imageCat = new Image(String.valueOf(ClassLoader.getSystemResource("cat.jpg")));
+        ImageView imgCat = new ImageView(imageCat);
+        imgCat.setFitWidth(50);
+        imgCat.setFitHeight(50);
+        buttonCat.setGraphic(imgCat);
 
 
         //обрабочик событий
@@ -92,6 +95,20 @@ public class SelectTamagotchi extends Application {
             selectedTamagotchi = "cat";
         });
 
+        buttonFish.setOnAction(event -> {
+            selectLabel.setText("Выбрана рыбка");
+            selectedTamagotchi = "fish";
+        });
+
+        buttonTurtle.setOnAction(event -> {
+            selectLabel.setText("Выбрана черепашка");
+            selectedTamagotchi = "turtle";
+        });
+        buttonBird.setOnAction(event -> {
+            selectLabel.setText("Выбрана птичка");
+            selectedTamagotchi = "bird";
+        });
+
 
         //
         selectButton.setOnAction(event -> {
@@ -101,27 +118,20 @@ public class SelectTamagotchi extends Application {
             else{
                 System.out.println("Сохраняем томагочи");
                 //сохраняем тамаготчи
-                File file = new File("./src/main/resources/status1.txt");
-                //String path = String.valueOf(ClassLoader.getSystemResource("status1.txt"));
-                //File file = new File(file);
+                File file = new File("./src/main/resources/status.txt");
 
-                //LocalDate localDate = LocalDate.now();
-                //Date date
                 Calendar calendar = new GregorianCalendar();
                 Date date = calendar.getTime();
 
+
+
                 try(FileWriter writer = new FileWriter(file))
                 {
-                    // запись всей строки
-                    //String text = "Hello Gold!";
                     writer.write("live");
-                    //System.getProperty(line.separator);
                     writer.append("\r\n");
                     writer.write(selectedTamagotchi);
                     writer.append("\r\n");
                     writer.write(date.toString()+ "\n");
-                    //writer.append('\n');
-                    //writer.append('E');
 
                     writer.flush();
                 }
@@ -130,9 +140,19 @@ public class SelectTamagotchi extends Application {
                     System.out.println(ex.getMessage());
                 }
 
+
+
             }
 
 
+            Stage stage = (Stage) selectButton.getScene().getWindow();
+            stage.close();
+            PlayTamagotchi playTamagotchi = new PlayTamagotchi();
+            try {
+                playTamagotchi.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
             //new SelectTamagotchi().open(String[] args);
@@ -147,9 +167,9 @@ public class SelectTamagotchi extends Application {
         root.getChildren().addAll(label, buttonDog, buttonCat, buttonFish, buttonTurtle, buttonBird);
         root.getChildren().addAll(labelDog, labelCat, labelFish,labelTurtle, labelBird);
         root.getChildren().addAll(selectLabel, selectButton);
-        root.getChildren().addAll(img);
+        root.getChildren().addAll(imgDog,imgCat);
 
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root, 400, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Окно создания персонажа");
         primaryStage.setResizable(false);
@@ -158,7 +178,7 @@ public class SelectTamagotchi extends Application {
     }
 
     public void selectWindow(String[] args){
-        launch(args);
+        launch();
         //PlayTamagotchi playTamagotchi = new PlayTamagotchi();
         //playTamagotchi.buildWindow(args);
     }

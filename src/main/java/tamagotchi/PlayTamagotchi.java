@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -15,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tamagotchi.personageTamagotchi.CharacterTamagotchi;
-import tamagotchi.personageTamagotchi.PersonageTamagotchi;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,7 +24,8 @@ import java.util.HashMap;
 
 public class PlayTamagotchi extends Application {
     private HashMap<KeyCode, Boolean> keys = new HashMap<>();
-    public static ArrayList<Rectangle> food = new ArrayList<>();
+    //public static ArrayList<Rectangle> food = new ArrayList<>();
+    boolean eats = false;
     //PersonageTamagotchi myTomagochi = new PersonageTamagotchi();
     //String status;
 
@@ -41,23 +42,13 @@ public class PlayTamagotchi extends Application {
     }
     ImageView imageView = new ImageView(image);
 
-
-    //ImageView imageView = new ImageView(new File("1.png").toURI().toString());
     CharacterTamagotchi player = new CharacterTamagotchi(imageView);
-    public static Pane root = new Pane();
 
-    public void eat(){
-        int random = (int)Math.floor(Math.random()*100);
-        int x = (int)Math.floor(Math.random()*300);
-        int y = (int)Math.floor(Math.random()*300);
-        if(random == 5){
-            Rectangle rect = new Rectangle(50,50, Color.BLUE);
-            rect.setX(x);
-            rect.setY(y);
-            food.add(rect);
-            //root.getChildren().add(rect);
-        }
+    public boolean eat(){
+        return
+     eats = player.Eat();
     }
+
 
 
     public void update() {
@@ -93,42 +84,43 @@ public class PlayTamagotchi extends Application {
             public void handle(long now) {
                 update();
                 eat();
+            //    play();
+            //    anger();
+               if (eats){
+                   //buttonFood.setPrefSize(100,100);
+
+                }
             }
         };
-
 
 
         BorderPane root = new BorderPane();
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
 
+        Button buttonStatus = addButton("Статус");
         Button buttonEat = addButton("Накормить");
         Button buttonPlay = addButton("Поиграть");
         Button buttonZamuchit = addButton("Позлить");
-        Button buttonStatistica = addButton("Статистика");
         Button buttonExit = addButton("Выход");
 
         Button buttonFood = new Button("Food");
-        //buttonFood.setPrefSize(150,150);
-        //buttonFood.setTranslateX(200);
-        //buttonFood.setTranslateY(200);
-        Button top = new Button("Top");
-        BorderPane.setAlignment(top, Pos.CENTER);
+        Button buttonToy = new Button("Toy");
+        Button buttonZZZ = new Button("RRR..");
 
 
         buttonEat.setOnAction(event -> {
             buttonFood.setPrefSize(100,100);
-            BorderPane.setAlignment(buttonFood, Pos.CENTER);
+            BorderPane.setAlignment(buttonFood, Pos.TOP_RIGHT);
+            root.setCenter(buttonFood);
             System.out.println("Кормление");
-            //root.getChildren().addAll(buttonFood);
         });
 
-        vbox.getChildren().addAll(buttonEat, buttonPlay, buttonZamuchit, buttonStatistica, buttonExit);
+        vbox.getChildren().addAll(buttonStatus, buttonEat, buttonPlay, buttonZamuchit, buttonExit);
         root.setRight(vbox);
-        root.setCenter(buttonFood);
-        //root.getChildren().addAll(buttonFood);
-        //root.getChildren(buttonFood);
+
         root.getChildren().addAll(player);
+        //root.getChildren().addAll(food);
 
 
         Scene scene = new Scene(root, 900, 500);
@@ -136,6 +128,11 @@ public class PlayTamagotchi extends Application {
         scene.setOnKeyReleased(event-> {
             keys.put(event.getCode(), false);
         });
+
+        if (eats){
+            buttonFood.setBackground(Background.EMPTY);
+            System.out.println("ем ням ням");
+        }
 
         timer.start();
         primaryStage.setScene(scene);
@@ -152,7 +149,7 @@ public class PlayTamagotchi extends Application {
         return btn;
     }
 
-    public static void buildWindow(String[] args) {
-        launch(args);
+    public static void buildWindow() {
+        launch();
     }
 }

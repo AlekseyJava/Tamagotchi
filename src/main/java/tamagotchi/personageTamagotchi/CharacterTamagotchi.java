@@ -27,7 +27,7 @@ public class CharacterTamagotchi extends Pane {
     public void moveX(int x){
         boolean right = x>0?true:false;
         for(int i = 0; i < Math.abs(x); i++) {
-            if ((right)&&(this.getTranslateX()<300)){
+            if ((right)&&(this.getTranslateX()<500)){
                 this.setTranslateX(this.getTranslateX() + 1);
             }
             else if(this.getTranslateX()>0){
@@ -41,7 +41,7 @@ public class CharacterTamagotchi extends Pane {
     public void moveY(int y) {
         boolean down = y > 0 ? true : false;
         for (int i = 0; i < Math.abs(y); i++) {
-            if ((down)&&(this.getTranslateY()<300)) {
+            if ((down)&&(this.getTranslateY()<400)) {
                 this.setTranslateY(this.getTranslateY() + 1);}
             else if(getTranslateY()>0){
                 this.setTranslateY(this.getTranslateY() - 1);
@@ -51,16 +51,14 @@ public class CharacterTamagotchi extends Pane {
     }
 
     //еда
-    public void Eat(){
-        PlayTamagotchi.food.forEach((rect) -> {
-            if (this.getBoundsInParent().intersects(rect.getBoundsInParent())) {
-                removeRect = rect;
-                score++;
-                System.out.println(score);
-            }
+    public boolean Eat(){
+        if ((this.getTranslateX()>400)&&(this.getTranslateY()<100))
+        {
+            return true;
+        }
 
-        });
-        PlayTamagotchi.food.remove(removeRect);
-        PlayTamagotchi.root.getChildren().remove(removeRect);
+        else {
+            return false;
+        }
     }
 }

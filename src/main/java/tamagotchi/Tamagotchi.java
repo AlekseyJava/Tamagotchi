@@ -19,7 +19,7 @@ public class Tamagotchi {
         //Тамагочи живет
         if (status.equals("live")){
             PlayTamagotchi playTamagotchi = new PlayTamagotchi();
-            playTamagotchi.buildWindow(args);
+            playTamagotchi.buildWindow();
         }
 
         //Тамагочи умер

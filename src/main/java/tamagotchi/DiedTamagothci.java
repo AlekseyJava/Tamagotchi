@@ -33,15 +33,8 @@ public class DiedTamagothci extends Application {
         labelImg.setText("Ваш тамагочи умер: " + "время смерти томагочи");
         labelImg.setGraphicTextGap(2);
         labelImg.setContentDisplay(ContentDisplay.BOTTOM);
-        //labelImg.setText("Выбрать нового можно будет, через: " + "время выбора нового" );
-        //labelImg.setGraphicTextGap(2);
-        //labelImg.setContentDisplay(ContentDisplay.TOP);
 
         root.getChildren().addAll(labelDied, labelNewTamagotchi, labelImg);
-
-
-
-
 
         Scene scene = new Scene(root, 300, 300);
         primaryStage.setScene(scene);
