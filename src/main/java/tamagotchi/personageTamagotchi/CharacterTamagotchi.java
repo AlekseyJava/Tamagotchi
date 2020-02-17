@@ -11,8 +11,8 @@ public class CharacterTamagotchi extends Pane {
     ImageView imageView;
     int offsetX = 0;
     int offsetY = 0;
-    int width = 100;
-    int height = 100;
+    int width = 50;
+    int height = 50;
     int score = 0;
     Rectangle removeRect = null;
     public GameAnimation animation;
@@ -27,7 +27,7 @@ public class CharacterTamagotchi extends Pane {
     public void moveX(int x){
         boolean right = x>0?true:false;
         for(int i = 0; i < Math.abs(x); i++) {
-            if ((right)&&(this.getTranslateX()<500)){
+            if ((right)&&(this.getTranslateX()<550)){
                 this.setTranslateX(this.getTranslateX() + 1);
             }
             else if(this.getTranslateX()>0){
@@ -41,7 +41,7 @@ public class CharacterTamagotchi extends Pane {
     public void moveY(int y) {
         boolean down = y > 0 ? true : false;
         for (int i = 0; i < Math.abs(y); i++) {
-            if ((down)&&(this.getTranslateY()<400)) {
+            if ((down)&&(this.getTranslateY()<550)) {
                 this.setTranslateY(this.getTranslateY() + 1);}
             else if(getTranslateY()>0){
                 this.setTranslateY(this.getTranslateY() - 1);
@@ -52,7 +52,7 @@ public class CharacterTamagotchi extends Pane {
 
     //еда
     public boolean Eat(){
-        if ((this.getTranslateX()>400)&&(this.getTranslateY()<100))
+        if ((this.getTranslateX()>500)&&(this.getTranslateY()<50))
         {
             return true;
         }

@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -16,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tamagotchi.personageTamagotchi.CharacterTamagotchi;
+import tamagotchi.personageTamagotchi.EatTamagotchi;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,25 +26,19 @@ import java.util.HashMap;
 
 public class PlayTamagotchi extends Application {
     private HashMap<KeyCode, Boolean> keys = new HashMap<>();
-    //public static ArrayList<Rectangle> food = new ArrayList<>();
     boolean eats = false;
-    //PersonageTamagotchi myTomagochi = new PersonageTamagotchi();
-    //String status;
 
     //-------------------------------------------------------------------------------------------------
-
-    //private HashMap<KeyCode, Boolean> keys = new HashMap<>();
-    //public static ArrayList<Rectangle> food = new ArrayList<>();
-
-    Image image;
+    Image imageTypeTomogochi;
     {
         try {
-            image = new Image(new FileInputStream("Z:\\dog.jpg"));
+            imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/dog.jpg"));
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
-    ImageView imageView = new ImageView(image);
+    ImageView imagePerson = new ImageView(imageTypeTomogochi);
 
-    CharacterTamagotchi player = new CharacterTamagotchi(imageView);
+    CharacterTamagotchi player = new CharacterTamagotchi(imagePerson);
+    EatTamagotchi eatTamagotchi = new EatTamagotchi();
 
     public boolean eat(){
         return
@@ -87,7 +83,7 @@ public class PlayTamagotchi extends Application {
             //    play();
             //    anger();
                if (eats){
-                   //buttonFood.setPrefSize(100,100);
+                   System.out.println("ем ням");
 
                 }
             }
@@ -96,9 +92,12 @@ public class PlayTamagotchi extends Application {
 
         BorderPane root = new BorderPane();
         VBox vbox = new VBox();
-        vbox.setAlignment(Pos.CENTER);
+        vbox.setAlignment(Pos.BOTTOM_CENTER);
 
-        Button buttonStatus = addButton("Статус");
+        //Button buttonStatus = addButton("Статус");
+
+        Label label = new Label("my label");
+        //label.setTranslateX(700);
         Button buttonEat = addButton("Накормить");
         Button buttonPlay = addButton("Поиграть");
         Button buttonZamuchit = addButton("Позлить");
@@ -110,7 +109,7 @@ public class PlayTamagotchi extends Application {
 
 
         buttonEat.setOnAction(event -> {
-            buttonFood.setPrefSize(100,100);
+            buttonFood.setPrefSize(50,50);
             BorderPane.setAlignment(buttonFood, Pos.TOP_RIGHT);
             root.setCenter(buttonFood);
             System.out.println("Кормление");
@@ -120,7 +119,7 @@ public class PlayTamagotchi extends Application {
             primaryStage.close();
         });
 
-        vbox.getChildren().addAll(buttonStatus, buttonEat, buttonPlay, buttonZamuchit, buttonExit);
+        vbox.getChildren().addAll(label,buttonEat, buttonPlay, buttonZamuchit, buttonExit);
         root.setRight(vbox);
 
         root.getChildren().addAll(player);
