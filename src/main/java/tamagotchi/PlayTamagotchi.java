@@ -116,6 +116,10 @@ public class PlayTamagotchi extends Application {
             System.out.println("Кормление");
         });
 
+        buttonExit.setOnAction(event ->{
+            primaryStage.close();
+        });
+
         vbox.getChildren().addAll(buttonStatus, buttonEat, buttonPlay, buttonZamuchit, buttonExit);
         root.setRight(vbox);
 

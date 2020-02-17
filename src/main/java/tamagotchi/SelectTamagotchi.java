@@ -16,12 +16,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class SelectTamagotchi extends Application {
     private String selectedTamagotchi; //выбраный тамаготчи
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -83,11 +85,9 @@ public class SelectTamagotchi extends Application {
 
 
         //обрабочик событий
-
         buttonDog.setOnAction(event -> {
             selectLabel.setText("Выбрана собака");
             selectedTamagotchi = "dog";
-
         });
 
         buttonCat.setOnAction(event -> {
@@ -120,28 +120,23 @@ public class SelectTamagotchi extends Application {
                 //сохраняем тамаготчи
                 File file = new File("./src/main/resources/status.txt");
 
-                Calendar calendar = new GregorianCalendar();
-                Date date = calendar.getTime();
-
-
+                LocalDateTime lastEat = LocalDateTime.now();
 
                 try(FileWriter writer = new FileWriter(file))
                 {
-                    writer.write("live");
+                    //writer.write("live");
+                    //writer.append("\r\n");
+                    writer.write(lastEat.toString()+ "\n");
                     writer.append("\r\n");
                     writer.write(selectedTamagotchi);
                     writer.append("\r\n");
-                    writer.write(date.toString()+ "\n");
-
+                    //writer.write(lastEat.toString()+ "\n");
                     writer.flush();
                 }
                 catch(IOException ex){
 
                     System.out.println(ex.getMessage());
                 }
-
-
-
             }
 
 
@@ -153,13 +148,6 @@ public class SelectTamagotchi extends Application {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-            //new SelectTamagotchi().open(String[] args);
-
-
-            //закрываем окно выбора
-            //открываем окно игры
 
         });
 
