@@ -32,17 +32,27 @@ public class PlayTamagotchi extends Application {
     Image imageTypeTomogochi;
     {
         try {
+            //считывание status
             imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/dog.jpg"));
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
+
+    Image imageFoodTomagochi;
+    {
+        try {
+            //считывание status
+            imageFoodTomagochi = new Image(new FileInputStream("./src/main/resources/food.jpg"));
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+
+    }
     ImageView imagePerson = new ImageView(imageTypeTomogochi);
+    ImageView imageFood = new ImageView(imageFoodTomagochi);
 
     CharacterTamagotchi player = new CharacterTamagotchi(imagePerson);
-    EatTamagotchi eatTamagotchi = new EatTamagotchi();
+    EatTamagotchi footTamagotchi = new EatTamagotchi(imageFood);
 
-    public boolean eat(){
-        return
-     eats = player.Eat();
+    public void eat(){
+        footTamagotchi.animation.play();
     }
 
 
@@ -78,14 +88,8 @@ public class PlayTamagotchi extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if (eats) eat();
                 update();
-                eat();
-            //    play();
-            //    anger();
-               if (eats){
-                   System.out.println("ем ням");
-
-                }
             }
         };
 
@@ -94,13 +98,13 @@ public class PlayTamagotchi extends Application {
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.BOTTOM_CENTER);
 
-        //Button buttonStatus = addButton("Статус");
-
         Label label = new Label("my label");
-        //label.setTranslateX(700);
+
         Button buttonEat = addButton("Накормить");
         Button buttonPlay = addButton("Поиграть");
+        buttonPlay.setDisable(true);
         Button buttonZamuchit = addButton("Позлить");
+        buttonZamuchit.setDisable(true);
         Button buttonExit = addButton("Выход");
 
         Button buttonFood = new Button("Food");
@@ -122,9 +126,7 @@ public class PlayTamagotchi extends Application {
         vbox.getChildren().addAll(label,buttonEat, buttonPlay, buttonZamuchit, buttonExit);
         root.setRight(vbox);
 
-        root.getChildren().addAll(player);
-        //root.getChildren().addAll(food);
-
+        root.getChildren().addAll(player, footTamagotchi);
 
         Scene scene = new Scene(root, 900, 500);
         scene.setOnKeyPressed(event->keys.put(event.getCode(),true));

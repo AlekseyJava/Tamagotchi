@@ -9,13 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -83,6 +81,24 @@ public class SelectTamagotchi extends Application {
         imgCat.setFitHeight(50);
         buttonCat.setGraphic(imgCat);
 
+        Image imageFish = new Image(String.valueOf(ClassLoader.getSystemResource("fish.jpg")));
+        ImageView imgFish = new ImageView(imageFish);
+        imgFish.setFitWidth(50);
+        imgFish.setFitHeight(50);
+        buttonFish.setGraphic(imgFish);
+
+        Image imageTurtle = new Image(String.valueOf(ClassLoader.getSystemResource("turtle.jpg")));
+        ImageView imgTurtle = new ImageView(imageTurtle);
+        imgTurtle.setFitWidth(50);
+        imgTurtle.setFitHeight(50);
+        buttonTurtle.setGraphic(imgTurtle);
+
+        Image imageBird = new Image(String.valueOf(ClassLoader.getSystemResource("bird.jpg")));
+        ImageView imgBird = new ImageView(imageBird);
+        imgBird.setFitWidth(50);
+        imgBird.setFitHeight(50);
+        buttonBird.setGraphic(imgBird);
+
 
         //обрабочик событий
         buttonDog.setOnAction(event -> {
@@ -124,13 +140,10 @@ public class SelectTamagotchi extends Application {
 
                 try(FileWriter writer = new FileWriter(file))
                 {
-                    //writer.write("live");
-                    //writer.append("\r\n");
                     writer.write(lastEat.toString()+ "\n");
                     writer.append("\r\n");
                     writer.write(selectedTamagotchi);
                     writer.append("\r\n");
-                    //writer.write(lastEat.toString()+ "\n");
                     writer.flush();
                 }
                 catch(IOException ex){
@@ -167,17 +180,6 @@ public class SelectTamagotchi extends Application {
 
     public void selectWindow(String[] args){
         launch();
-        //PlayTamagotchi playTamagotchi = new PlayTamagotchi();
-        //playTamagotchi.buildWindow(args);
-    }
-
-    public void open(String[] args){
-        //PlayTamagotchi playTamagotchi = new PlayTamagotchi();
-        //playTamagotchi.buildWindow(args);
-        //if (selectedTamagotchi.equals("dog")){
-
-        //}
-
     }
 }
 

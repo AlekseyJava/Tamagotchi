@@ -44,7 +44,7 @@ public class DiedTamagothci extends Application {
     }
 
     public void died(String[] args){
-        launch(args);
+        launch();
     }
 }
 

@@ -13,8 +13,6 @@ public class CharacterTamagotchi extends Pane {
     int offsetY = 0;
     int width = 50;
     int height = 50;
-    int score = 0;
-    Rectangle removeRect = null;
     public GameAnimation animation;
     public CharacterTamagotchi(ImageView imageView){
         this.imageView = imageView;
