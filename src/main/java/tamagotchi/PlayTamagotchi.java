@@ -27,6 +27,8 @@ import java.util.HashMap;
 public class PlayTamagotchi extends Application {
     private HashMap<KeyCode, Boolean> keys = new HashMap<>();
     boolean eats = false;
+    boolean food = false;
+    int sizePersonage = 50;
 
     //-------------------------------------------------------------------------------------------------
     Image imageTypeTomogochi;
@@ -48,10 +50,18 @@ public class PlayTamagotchi extends Application {
     ImageView imagePerson = new ImageView(imageTypeTomogochi);
     ImageView imageFood = new ImageView(imageFoodTomagochi);
 
-    CharacterTamagotchi player = new CharacterTamagotchi(imagePerson);
+    CharacterTamagotchi player = new CharacterTamagotchi(imagePerson, sizePersonage, sizePersonage);
     EatTamagotchi footTamagotchi = new EatTamagotchi(imageFood);
 
     public void eat(){
+        if (food == false){
+            imageFood.setFitHeight(0);
+            imageFood.setFitWidth(0);
+        }
+        else {
+            imageFood.setFitHeight(50);
+            imageFood.setFitWidth(50);
+        }
         footTamagotchi.animation.play();
     }
 
@@ -61,18 +71,23 @@ public class PlayTamagotchi extends Application {
         if (isPressed(KeyCode.UP)) {
             player.animation.play();
             player.moveY(-1);
+            eats = player.Eat();
         } else if (isPressed(KeyCode.DOWN)) {
             player.animation.play();
             player.moveY(1);
+            eats = player.Eat();
         } else if (isPressed(KeyCode.RIGHT)) {
             player.animation.play();
             player.moveX(1);
+            eats = player.Eat();
         } else if (isPressed(KeyCode.LEFT)) {
             player.animation.play();
             player.moveX(-1);
+            eats = player.Eat();
         }
         else{
             player.animation.stop();
+            eats = player.Eat();
         }
     }
     public boolean isPressed(KeyCode key) {
@@ -88,7 +103,11 @@ public class PlayTamagotchi extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (eats) eat();
+                if (eats&&food) {
+                    food = false;
+                    System.out.println("eat");
+                    eat();
+                }
                 update();
             }
         };
@@ -113,9 +132,7 @@ public class PlayTamagotchi extends Application {
 
 
         buttonEat.setOnAction(event -> {
-            buttonFood.setPrefSize(50,50);
-            BorderPane.setAlignment(buttonFood, Pos.TOP_RIGHT);
-            root.setCenter(buttonFood);
+            food = true;
             System.out.println("Кормление");
         });
 

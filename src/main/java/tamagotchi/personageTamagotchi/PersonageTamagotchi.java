@@ -62,7 +62,6 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
         System.out.println("Идет процесс кормления");
     }
 
-
     @Override
     public void playWithTamagotchi() {
         System.out.println("Играю с томагочи");

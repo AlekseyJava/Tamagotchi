@@ -11,12 +11,14 @@ public class CharacterTamagotchi extends Pane {
     ImageView imageView;
     int offsetX = 0;
     int offsetY = 0;
-    int width = 50;
-    int height = 50;
+    //private int width = 50;
+    //private int height = 50;
     public GameAnimation animation;
-    public CharacterTamagotchi(ImageView imageView){
+    public CharacterTamagotchi(ImageView imageView, int width, int height){
         this.imageView = imageView;
-        this.imageView.setViewport(new Rectangle2D(offsetX,offsetY,width,height));
+        this.imageView.setFitWidth(width);
+        this.imageView.setFitHeight(height);
+        //this.imageView.setViewport(new Rectangle2D(offsetX,offsetY,width,height));
         animation = new GameAnimation(imageView);
         getChildren().addAll(imageView);
     }

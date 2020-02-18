@@ -8,7 +8,6 @@ import tamagotchi.GameAnimation;
 
 public class EatTamagotchi extends Pane {
     ImageView imageView;
-    Rectangle removeRect = null;
     public GameAnimation animation;
     public EatTamagotchi(ImageView imageView){
         this.imageView = imageView;
