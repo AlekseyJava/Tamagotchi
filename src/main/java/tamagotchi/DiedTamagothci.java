@@ -9,14 +9,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.time.LocalDateTime;
+
 public class DiedTamagothci extends Application {
+    private LocalDateTime timeDied;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = new Pane();
 
-        Label labelDied = new Label("Ваш тамагочи умер: и точное время смерти.");
-        Label labelNewTamagotchi = new Label("Выбрать нового можно будет: и точное время выбора");
+        BufferedReader reader = new BufferedReader(new FileReader(new File("./src//main//resources//status.txt")));
+        timeDied = LocalDateTime.parse(reader.readLine());
+        System.out.println(timeDied);
+
+        Label labelDied = new Label("Ваш тамагочи умер: " + timeDied.plusDays(1));
+        Label labelNewTamagotchi = new Label("Выбрать нового можно будет: " + timeDied.plusDays(4));
         labelNewTamagotchi.setTranslateY(12);
 
         String url = String.valueOf(ClassLoader.getSystemResource("died.jpg"));
@@ -30,7 +40,7 @@ public class DiedTamagothci extends Application {
         labelImg.setTranslateX(25);
         labelImg.setTranslateY(50);
 
-        labelImg.setText("Ваш тамагочи умер: " + "время смерти томагочи");
+        labelImg.setText("Ваш тамагочи умер: " + timeDied.plusDays(1));
         labelImg.setGraphicTextGap(2);
         labelImg.setContentDisplay(ContentDisplay.BOTTOM);
 

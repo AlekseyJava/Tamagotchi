@@ -29,12 +29,13 @@ public class PlayTamagotchi extends Application {
     boolean eats = false;
     boolean food = false;
     int sizePersonage = 50;
+    int sizeFood = 50;
 
     //-------------------------------------------------------------------------------------------------
     Image imageTypeTomogochi;
     {
         try {
-            //считывание status
+            //считывание картинки
             imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/dog.jpg"));
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
@@ -51,43 +52,52 @@ public class PlayTamagotchi extends Application {
     ImageView imageFood = new ImageView(imageFoodTomagochi);
 
     CharacterTamagotchi player = new CharacterTamagotchi(imagePerson, sizePersonage, sizePersonage);
-    EatTamagotchi footTamagotchi = new EatTamagotchi(imageFood);
+    EatTamagotchi footTamagotchi = new EatTamagotchi(imageFood, sizeFood);
 
     public void eat(){
         if (food == false){
-            imageFood.setFitHeight(0);
-            imageFood.setFitWidth(0);
+            System.out.println("Еды нет");
+            footTamagotchi.animation.play();
+            footTamagotchi.notFood();
         }
-        else {
-            imageFood.setFitHeight(50);
-            imageFood.setFitWidth(50);
-        }
-        footTamagotchi.animation.play();
-    }
 
+        if ((food)&&(eats)){
+            System.out.println("Еда есть кушаю");
+            food = false;
+            footTamagotchi.animation.play();
+            footTamagotchi.notFood();
+            player.size();
+        }
+
+        if ((food)&&(eats == false)){
+            System.out.println("Еда есть не скормлена");
+            footTamagotchi.animation.play();
+
+        }
+    }
 
 
     public void update() {
         if (isPressed(KeyCode.UP)) {
             player.animation.play();
             player.moveY(-1);
-            eats = player.Eat();
+            eats = player.eat();
         } else if (isPressed(KeyCode.DOWN)) {
             player.animation.play();
             player.moveY(1);
-            eats = player.Eat();
+            eats = player.eat();
         } else if (isPressed(KeyCode.RIGHT)) {
             player.animation.play();
             player.moveX(1);
-            eats = player.Eat();
+            eats = player.eat();
         } else if (isPressed(KeyCode.LEFT)) {
             player.animation.play();
             player.moveX(-1);
-            eats = player.Eat();
+            eats = player.eat();
         }
         else{
             player.animation.stop();
-            eats = player.Eat();
+            eats = player.eat();
         }
     }
     public boolean isPressed(KeyCode key) {
@@ -103,11 +113,7 @@ public class PlayTamagotchi extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (eats&&food) {
-                    food = false;
-                    System.out.println("eat");
-                    eat();
-                }
+                eat();
                 update();
             }
         };
@@ -126,14 +132,11 @@ public class PlayTamagotchi extends Application {
         buttonZamuchit.setDisable(true);
         Button buttonExit = addButton("Выход");
 
-        Button buttonFood = new Button("Food");
-        Button buttonToy = new Button("Toy");
-        Button buttonZZZ = new Button("RRR..");
-
 
         buttonEat.setOnAction(event -> {
             food = true;
             System.out.println("Кормление");
+            footTamagotchi.haveFood();
         });
 
         buttonExit.setOnAction(event ->{
@@ -150,11 +153,6 @@ public class PlayTamagotchi extends Application {
         scene.setOnKeyReleased(event-> {
             keys.put(event.getCode(), false);
         });
-
-        if (eats){
-            buttonFood.setBackground(Background.EMPTY);
-            System.out.println("ем ням ням");
-        }
 
         timer.start();
         primaryStage.setScene(scene);

@@ -9,18 +9,17 @@ import tamagotchi.PlayTamagotchi;
 
 public class CharacterTamagotchi extends Pane {
     ImageView imageView;
-    int offsetX = 0;
-    int offsetY = 0;
-    //private int width = 50;
-    //private int height = 50;
     public GameAnimation animation;
+    private int width;
+    private int heigth;
     public CharacterTamagotchi(ImageView imageView, int width, int height){
+        this.width = width;
+        this.heigth = height;
         this.imageView = imageView;
         this.imageView.setFitWidth(width);
         this.imageView.setFitHeight(height);
-        //this.imageView.setViewport(new Rectangle2D(offsetX,offsetY,width,height));
-        animation = new GameAnimation(imageView);
-        getChildren().addAll(imageView);
+        animation = new GameAnimation(this.imageView);
+        getChildren().addAll(this.imageView);
     }
 
     //передвижение
@@ -33,7 +32,8 @@ public class CharacterTamagotchi extends Pane {
             else if(this.getTranslateX()>0){
                 this.setTranslateX(this.getTranslateX() - 1);
             }
-            Eat();
+            eat();
+            //size();
         }
     }
 
@@ -46,12 +46,13 @@ public class CharacterTamagotchi extends Pane {
             else if(getTranslateY()>0){
                 this.setTranslateY(this.getTranslateY() - 1);
             }
-            Eat();
+            eat();
+            //size();
         }
     }
 
     //еда
-    public boolean Eat(){
+    public boolean eat(){
         if ((this.getTranslateX()>500)&&(this.getTranslateY()<50))
         {
             return true;
@@ -60,5 +61,16 @@ public class CharacterTamagotchi extends Pane {
         else {
             return false;
         }
+    }
+
+    public void size(){
+        if (heigth <= 100) {
+            this.heigth = this.heigth + 1;
+            this.width = this.width + 1;
+            this.imageView.setFitWidth(this.width);
+            this.imageView.setFitHeight(this.heigth);
+        }
+        else System.out.println("Тамагочи достиг своего максимального размера");;
+
     }
 }

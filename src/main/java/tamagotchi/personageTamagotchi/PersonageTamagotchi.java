@@ -66,29 +66,6 @@ public class PersonageTamagotchi implements Eat, Anger, Play {
     public void playWithTamagotchi() {
         System.out.println("Играю с томагочи");
     }
-/*
-    public Tamagotchi statusTamagochi(){
-        String myTomagochiStatus;
-        String lastFeedingTime;
-        Tamagotchi tamagochi = new Tamagotchi();
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("./src//main//resources//status.txt")));
-
-            // считаем сначала первую строку
-
-            System.out.println(myTomagochiStatus = reader.readLine());
-            System.out.println(lastFeedingTime = reader.readLine());
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //tamagochi.
-        return tamagochi;
-    }
-    */
 }
 
