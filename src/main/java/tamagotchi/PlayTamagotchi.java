@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 import tamagotchi.personageTamagotchi.CharacterTamagotchi;
 import tamagotchi.personageTamagotchi.EatTamagotchi;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,14 +30,45 @@ public class PlayTamagotchi extends Application {
     boolean food = false;
     int sizePersonage = 50;
     int sizeFood = 50;
+    LocalDateTime lastFeedingTime;
+    String typeTamagotchi;
 
     //-------------------------------------------------------------------------------------------------
     Image imageTypeTomogochi;
     {
         try {
             //считывание картинки
-            imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/dog.jpg"));
-        } catch (FileNotFoundException e) { e.printStackTrace(); }
+            BufferedReader reader = new BufferedReader(new FileReader(new File("./src//main//resources//status.txt")));
+            lastFeedingTime = LocalDateTime.parse(reader.readLine());
+            System.out.println(lastFeedingTime);
+            System.out.println(reader.readLine());
+            typeTamagotchi = reader.readLine();
+            System.out.println(typeTamagotchi);
+
+            if(typeTamagotchi.equals("dog")){
+                imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/dog.jpg"));
+            }
+
+            if(typeTamagotchi.equals("cat")){
+                imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/cat.jpg"));
+            }
+
+            if(typeTamagotchi.equals("fish")){
+                imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/fish.jpg"));
+            }
+
+            if(typeTamagotchi.equals("turtle")){
+                imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/turtle.jpg"));
+            }
+
+            if(typeTamagotchi.equals("bird")){
+                imageTypeTomogochi = new Image(new FileInputStream("./src/main/resources/bird.jpg"));
+            }
+
+
+        } catch (FileNotFoundException e) { e.printStackTrace(); } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     Image imageFoodTomagochi;
@@ -56,13 +87,13 @@ public class PlayTamagotchi extends Application {
 
     public void eat(){
         if (food == false){
-            System.out.println("Еды нет");
+            //System.out.println("Еды нет");
             footTamagotchi.animation.play();
             footTamagotchi.notFood();
         }
 
         if ((food)&&(eats)){
-            System.out.println("Еда есть кушаю");
+            //System.out.println("Еда есть кушаю");
             food = false;
             footTamagotchi.animation.play();
             footTamagotchi.notFood();
@@ -70,7 +101,7 @@ public class PlayTamagotchi extends Application {
         }
 
         if ((food)&&(eats == false)){
-            System.out.println("Еда есть не скормлена");
+            //System.out.println("Еда есть не скормлена");
             footTamagotchi.animation.play();
 
         }
@@ -123,7 +154,7 @@ public class PlayTamagotchi extends Application {
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.BOTTOM_CENTER);
 
-        Label label = new Label("my label");
+        Label label = new Label("lastFeedingTime");
 
         Button buttonEat = addButton("Накормить");
         Button buttonPlay = addButton("Поиграть");
@@ -137,6 +168,8 @@ public class PlayTamagotchi extends Application {
             food = true;
             System.out.println("Кормление");
             footTamagotchi.haveFood();
+            lastFeedingTime = LocalDateTime.now();
+            label.setText(lastFeedingTime.toString());
         });
 
         buttonExit.setOnAction(event ->{
